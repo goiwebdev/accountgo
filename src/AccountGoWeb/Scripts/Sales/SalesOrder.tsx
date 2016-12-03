@@ -259,7 +259,7 @@ class SalesOrderLines extends React.Component<any, {}>{
                             <tr>
                                 <td>No</td>
                                 <td>Item Id</td>
-                                <td>Item Name</td>
+                                <td>Code</td>
                                 <td>Measurement</td>
                                 <td>Quantity</td>
                                 <td>Amount</td>

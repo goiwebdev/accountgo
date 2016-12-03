@@ -3,7 +3,9 @@
 <div>
 </div>
 <div>
-    <div id="accounts" class="ag-blue"></div>
+    @*<div id="accounts" class="ag-blue"></div>*@
+
+    <div id="accounts" class="ag-blue" style="height: 400px;"></div>
 </div>
 <script>
     var columnDefs = [
@@ -39,10 +41,15 @@
         }}
     ];
 
+     
+
+ 
+
     var gridOptions = {
         columnDefs: columnDefs,
         rowData: @Html.Raw(Model),
         getNodeChildDetails: function(data) {
+          
             if (data.childAccounts.length > 0) {
                 return {
                     group: true,
@@ -57,7 +64,7 @@
             groupExpanded: '<i class="fa fa-minus-square-o"/>',
             groupContracted: '<i class="fa fa-plus-square-o"/>'
         },        
-        // PROPERTIES
+     //   PROPERTIES
         rowSelection: 'single',
         enableFilter: true,
         enableColResize: true,
@@ -66,16 +73,29 @@
     function autoSizeAll() {
         var allColumnIds = [];
         columnDefs.forEach( function(columnDef) {
+            console.log(columnDef.field);
             allColumnIds.push(columnDef.field);
+           
         });
         gridOptions.columnApi.autoSizeColumns(allColumnIds);
     }
 
     // wait for the document to be loaded, otherwise
     // ag-Grid will not find the div in the document.
+    //document.addEventListener("DOMContentLoaded", function() {
+    //    var eGridDiv = document.querySelector('#accounts');
+    //    new agGrid.Grid(eGridDiv, gridOptions);
+    //    autoSizeAll();
+    //});
+
+    //document.addEventListener("DOMContentLoaded", function() {
+
+    //    var eGridDiv = document.querySelector('#accounts');
+    //    new agGrid.Grid(eGridDiv, gridOptions);
+    //});
+
     document.addEventListener("DOMContentLoaded", function() {
         var eGridDiv = document.querySelector('#accounts');
         new agGrid.Grid(eGridDiv, gridOptions);
-        autoSizeAll();
     });
 </script>
